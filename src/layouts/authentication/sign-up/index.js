@@ -51,6 +51,11 @@ function Cover() {
     };
 
     const handleSignUp = async () => {
+        if (password == email || password == username) {
+            showSnackbar("Password cannot be the same as email or username", "error");
+            return;
+        }
+
         const passwordRegex =
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
         if (!passwordRegex.test(password)) {
@@ -58,11 +63,6 @@ function Cover() {
                 "Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character",
                 "error"
             );
-            return;
-        }
-
-        if (password == email || password == username) {
-            showSnackbar("Password cannot be the same as email or username", "error");
             return;
         }
 
